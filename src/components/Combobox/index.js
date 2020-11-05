@@ -1,4 +1,6 @@
 import React, { useState } from "react"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons"
 
 import { languages } from "../../constants/const"
 import ComboboxItem from "./ComboboxItem"
@@ -11,15 +13,22 @@ const Combobox = () => {
   const [open, setOpen] = useState(false)
   return (
     <div className={styles.combobox} onClick={() => setOpen(!open)}>
-      <ul style={{ display: open ? "flex" : "none" }}>
-        {languages.map(el => (
-          <ComboboxItem
-            {...el}
-            setSelected={setSelectedItem}
-            selected={el.name === selectedItem.name}
-          />
-        ))}
-      </ul>
+      {
+        <ul style={{ display: open ? "flex" : "none" }}>
+          {languages.map(el => (
+            <ComboboxItem
+              {...el}
+              setSelected={setSelectedItem}
+              selected={el.name === selectedItem.name}
+            />
+          ))}
+        </ul>
+      }
+      <FontAwesomeIcon
+        icon={faChevronDown}
+        size="0.2x"
+        style={{ paddingRight: "12px" }}
+      />
       {selectedItem.language}
     </div>
   )
